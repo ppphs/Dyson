@@ -11,9 +11,9 @@
           <h2 class="title">计划移除的{{ text }}：</h2>
           <h2 class="num">{{ text }}数量：</h2>
         </div>
-        <component v-if="removeListTrigger[index]" :key="index" v-for="(item, index) in removeList" :is="item" :isRemove="true" :index="index"></component>
+        <component v-if="removeListTrigger[index]" :key="index" v-for="(item, index) in removeList" :is="item" :isRemove="true" :index="index" :isChooseLamp="isChooseLamp"></component>
         <h2 class="add-title">计划新增的{{ text }}：</h2>
-        <component v-if="addListTrigger[index]" :key="index" v-for="(item, index) in addList" :is="item" :isRemove="false" :index="index"></component>
+        <component v-if="addListTrigger[index]" :key="index" v-for="(item, index) in addList" :is="item" :isRemove="false" :index="index" :isChooseLamp="isChooseLamp"></component>
       </form>
     </div>
     <div class="next-step">
@@ -26,15 +26,16 @@
 import MyInput from 'components/my-input/my-input'
 
 export default {
-  created () {
-    console.log(this.removeListTrigger)
-  },
   data () {
     return {}
   },
   props: {
     text: {
       type: String,
+      require: true
+    },
+    isChooseLamp: {
+      type: Boolean,
       require: true
     }
   },
@@ -43,28 +44,28 @@ export default {
   },
   computed: {
     removeList () {
-      let removeList = this.$store.state.removeList
-      if (removeList.length > 1) {
-        this.removeFlage = true
-      } else {
-        this.removeFlage = false
-      }
+      let removeList = this.isChooseLamp ? this.$store.state.lampRemoveList : this.$store.state.removeList
+      // if (removeList.length > 1) {
+      //   this.removeFlage = true
+      // } else {
+      //   this.removeFlage = false
+      // }
       return removeList
     },
     addList () {
-      let addList = this.$store.state.addList
-      if (addList.length > 1) {
-        this.addFlage = true
-      } else {
-        this.addFlage = false
-      }
+      let addList = this.isChooseLamp ? this.$store.state.lampAddList : this.$store.state.addList
+      // if (addList.length > 1) {
+      //   this.addFlage = true
+      // } else {
+      //   this.addFlage = false
+      // }
       return addList
     },
     removeListTrigger () {
-      return this.$store.state.removeListTrigger
+      return this.isChooseLamp ? this.$store.state.lampRemoveListTrigger : this.$store.state.removeListTrigger
     },
     addListTrigger () {
-      return this.$store.state.addListTrigger
+      return this.isChooseLamp ? this.$store.state.lampAddListTrigger : this.$store.state.addListTrigger
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="chooseProperty">
-    <formList text="灯片"></formList>
+  <div class="chooseLampSlice">
+    <formList text="灯片" :isChooseLamp="true"></formList>
   </div>
 </template>
 

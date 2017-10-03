@@ -1,6 +1,6 @@
 <template>
   <div class="chooseProperty">
-    <formList text="道具"></formList>
+    <formList text="道具" :isChooseLamp="false"></formList>
   </div>
 </template>
 

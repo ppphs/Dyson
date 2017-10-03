@@ -35,6 +35,9 @@ export default {
     },
     index: {
       type: Number
+    },
+    isChooseLamp: {
+      type: Boolean
     }
   },
   created () {
@@ -43,25 +46,25 @@ export default {
   methods: {
     addNewInput () {
       if (this.isRemove && this.text !== '') {
-        this.$store.commit('addRemoveList')
+        this.isChooseLamp ? this.$store.commit('lampAddRemoveList') : this.$store.commit('addRemoveList')
       } else if (this.text !== '') {
-        this.$store.commit('addAddList')
+        this.isChooseLamp ? this.$store.commit('lampAddAddList') : this.$store.commit('addAddList')
       } else {
         return
       }
     },
     hasMinus () {
       if (this.isRemove) {
-        return this.$store.state.removeList.length > 1
+        return this.isChooseLamp ? this.$store.state.lampRemoveList.length > 1 : this.$store.state.removeList.length > 1
       } else {
-        return this.$store.state.addList.length > 1
+        return this.isChooseLamp ? this.$store.state.lampAddList.length > 1 : this.$store.state.addList.length > 1
       }
     },
     deleteInput () {
       if (this.isRemove) {
-        this.$store.commit('deleteRemoveList', this.index)
+        this.isChooseLamp ? this.$store.commit('lampDeleteRemoveList', this.index) : this.$store.commit('deleteRemoveList', this.index)
       } else {
-        this.$store.commit('deleteAddList', this.index)
+        this.isChooseLamp ? this.$store.commit('lampDeleteAddList', this.index) : this.$store.commit('deleteAddList', this.index)
       }
     }
   }
@@ -74,6 +77,7 @@ export default {
 .my-input
   display: flex
   font-size: 0
+  margin-bottom: 4px
   .left
     flex: 0 0 50%
     display: flex

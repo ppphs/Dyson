@@ -10,7 +10,9 @@
       <router-link class="link" tag="span" to="/newProperty/chooseProperty"><span>选择道具</span></router-link><!--
    --><router-link class="link" tag="span" to="/newProperty/chooseLampSlice"><span>选择灯片</span></router-link>
     </div>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -45,6 +47,7 @@ export default {
     .step
       flex: 0 0 auto
       font-size: $font-size-medium
+      opacity: 0.3
       .circle
         display: inline-block
         border-radius: 50% 
@@ -58,7 +61,6 @@ export default {
         text-align: center
         margin-left: 70px
         background: url('~common/image/steps_background_currentNode.png') no-repeat
-        opacity: 0.4
       &.stepHighlight
         opacity: 1
   .link-container

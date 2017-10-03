@@ -1,19 +1,29 @@
-import Vue from 'vue'
+import commonMutations from 'common/js/common-mutations.js'
 
 const mutations = {
   addRemoveList (state) {
-    state.removeList.push('my-input')
-    state.removeListTrigger.push(true)
+    commonMutations.addRemoveList(state.removeList, state.removeListTrigger)
   },
   addAddList (state) {
-    state.addList.push('my-input')
-    state.addListTrigger.push(true)
+    commonMutations.addAddList(state.addList, state.addListTrigger)
   },
   deleteRemoveList (state, index) {
-    Vue.set(state.removeListTrigger, index, false) // vue数组的元素变更需要用Vue.set才会去更新视图
+    commonMutations.deleteRemoveList(index, state.removeListTrigger)
   },
   deleteAddList (state, index) {
-    Vue.set(state.addListTrigger, index, false)
+    commonMutations.deleteRemoveList(index, state.addListTrigger)
+  },
+  lampAddRemoveList (state) {
+    commonMutations.addRemoveList(state.lampRemoveList, state.lampRemoveListTrigger)
+  },
+  lampAddAddList (state) {
+    commonMutations.addAddList(state.lampAddList, state.lampAddListTrigger)
+  },
+  lampDeleteRemoveList (state, index) {
+    commonMutations.deleteRemoveList(index, state.lampRemoveListTrigger)
+  },
+  lampDeleteAddList (state, index) {
+    commonMutations.deleteAddList(index, state.lampAddListTrigger)
   }
 }
 

@@ -43,7 +43,7 @@ export default {}
 
 .tab
   width: $width-nav
-  height: calc(100vh - 71px)
+  height: 100%
   color: $color-text-white
   background-color: $color-nav-bg
   .tab-item
